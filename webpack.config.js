@@ -11,7 +11,9 @@ module.exports = {
   target: 'node',
    externals: [nodeExternals({
      whitelist: [
-       /^@angular\/material/
+       /^@angular\/material/,
+       /^@?ngrx/,
+       /reselect/
      ]
    })],
   node: {
