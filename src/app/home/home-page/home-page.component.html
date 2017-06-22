@@ -1,3 +1,13 @@
-<p>
+<div *ngIf="one$ | async">
+  <p>One!</p>
+  <div *ngIf="one$ | async">
+    <p>One (again)!</p>
+    <div *ngIf="two$ | async">
+      <p>Two!</p>
+    </div>
+  </div>
+</div>
+<ng-template #notOne>Not one :(</ng-template>
+<p [@flyInOut]>
   home-page works!
 </p>
