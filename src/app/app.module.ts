@@ -7,6 +7,7 @@ import { AppComponent  } from './app.component';
 import { StoreModule   } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { reducer       } from './store/reducers';
+import { DummyEffects  } from './store/effects/dummy';
 
 export { AppComponent  };
 
@@ -29,8 +30,15 @@ export { AppComponent  };
      * meta-reducer. This returns all providers for an @ngrx/store
      * based application.
      */
-    StoreModule.provideStore( reducer )
+    StoreModule.provideStore( reducer ),
 
+    /**
+     * EffectsModule.run() sets up the effects class to be initialized
+     * immediately when the application starts.
+     *
+     * See: https://github.com/ngrx/effects/blob/master/docs/api.md#run
+     */
+    EffectsModule.run( DummyEffects )
   ],
   exports: [AppComponent],
   providers: [],
