@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { trigger , state , style , animate , transition, keyframes } from '@angular/animations';
 
+import { Store              } from '@ngrx/store';
+
+import * as reducers from '../../store/reducers';
+import * as action from '../../store/actions/dummy';
+
 
 @Component({
   selector: 'app-home-page',
@@ -32,7 +37,9 @@ export class HomePageComponent implements OnInit {
   one$: Observable<boolean>;
   two$: Observable<boolean>;
 
-  constructor() {
+  dummyLoading$: Observable<boolean>;
+
+  constructor( private store: Store<reducers.State> ) {
     this.one$ = Observable.create( ( observer ) => {
       console.log( 'one => created' );
 
@@ -59,6 +66,8 @@ export class HomePageComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.store.dispatch( new action.FetchAction() );
 
+    this.dummyLoading$ = this.store.select( reducers.getDummyLoading );
   }
 }
